@@ -1,0 +1,294 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethiopian Agricultural Market Management System</title>
+    <!-- <link rel="stylesheet" href="{% static 'dist/custom.18d3a4a7.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.1.3-dist/css/bootstrap.min.css' %}">
+    <script src = "{% static 'bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- top menu section -->
+  <!-- start top menu -->
+  <div id = "top">
+    <div class="container d-flex">
+      
+        <div class="col-md-6 offer">
+            <a href = "#" class = "btn btn-success btn-sm">Welcome</a>
+            <a href = "#">You have 4 unread Messages <span class="fa fa-cart"></span> </a>
+        </div>
+
+        <div class="col-md-6">
+            <ul class="menu d-flex align-items-center justify-content-end">
+              {% if user.is_authenticated %}
+              <li class="login"> <a style = "font-size:1.1em; margin-right: 1em;" class = "text-info text-bold" href = "#">Hello, {{user.first_name}}</a></li>
+              <li class="login"> <a style = "font-size:1.1em;" class = "text-white text-bold" href = "dashboard">Dashboard</a></li>
+              <li class="nav-item dropdown">
+                <a style = "font-size:1.1em;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  My Account
+                </a>
+                <style>
+                  .dropdown-menu{
+                    background-color: #555555;
+                    z-index: 999;
+                  }
+                  .dropdown-item:hover{
+                    background-color: #706d6d;
+                    color: white;
+                  }
+                </style> 
+                <ul class="dropdown-menu"aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="accounts/logout">Logout</a></li>
+                </ul>
+              </li>
+                <!--
+                <li class="login"> <a class = "btn btn-primary btn-sm" href = ""> Logout </a></li>
+                -->
+                {% else %}
+                <li class="login"> <a class = "btn btn-primary btn-sm" href = "accounts/login"> Sign in </a></li>
+                <li class="login"> <a class = "btn btn-secondary btn-sm" href = "accounts/register"> Register </a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</div>    <!-- end top menu-->
+
+<!-- Navbar Section -->
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold" href="#">Ethio<span class="text-primary">Agri</span></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="allproducts">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Catgories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Store</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+</div>
+  <div class="row m-3">
+    <!-- CATEGORY section (left) -->
+    <div class="col-md-2 right-cat">
+      <h5>CATEGORIES</h5>
+      <div class="card " style="width: 14rem;">
+        <div class="card-header">
+          Featured
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+    </div>
+    <!-- products list section -->
+    <div class="col-md-8">
+      <div class="row" style="margin-left: 2em;">
+        <h3> Featured Products </h3>
+        {% for dest in dests %}
+        <div class="card" style="width: 12rem;">
+          <img src="{{dest.img.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{dest.name}}</h5>
+            <p class="card-text">{{dest.desc}}</p>
+            <p>price ${{dest.price}}</p>
+            <a href="#" class="btn btn-warning text-white btn-sm" style="background: #f60;">Contact Supplier</a>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+  </div>
+  
+  <!-- featured section (right) -->
+  <div class="col-md-2 left-cat">
+    <div class="card" style="width: 12rem;">
+      <div class="card-header">
+        Featured
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+      </ul>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- product pagination section -->
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+<!-- General description section-->
+<div class="container">
+  <div class="card mb-3"> <!-- style="max-width: 540px;"-->
+    <div class="row g-0">
+      <div class="col-md-6">
+        <img src="{% static 'prod_thumb/orange/orange2.jfif' %}" class="img-fluid img-rounded" alt="...">
+      </div>
+
+      <div class="col-md-6">
+        <div class="card-body">
+          <h5 class="card-title">Ethiopian Agriculture</h5>
+          <p class="card-text">Ethiopia's agriculture is plagued by periodic drought, soil degradation 
+            caused by overgrazing, deforestation, high levels of taxation and poor infrastructure 
+            (making it difficult and expensive to get goods to market). Yet agriculture is the country's
+             most promising resource. A potential exists for self-sufficiency in grains and for export 
+             development in livestock, grains, vegetables, and fruits. As many as 4.6 million people need 
+             food assistance annually.</p>
+
+          <!-- <p class="card-text d-flex justify-content-center"><small class="text-muted">Dr. Duresa wata</small></p> -->
+        </div>
+      </div>
+
+    
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <p class = "text-uppercase fw-bold display-6" style="font-size: 1.5em;">Contact Us</p>
+  <hr>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Full Name</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="your name">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button class="btn btn-primary my-3">Submit</button>
+</div>
+
+
+<!-- Footer Section -->
+<footer class="page-footer bg-dark text-white">
+  <div class="bg-success">
+    <div class="container">
+      <div class="row py-4 d-flex align-items-center">
+        <div class="col-md-12">
+          <ul class="social">
+          <li><a href="#"><i class="fab fa-facebook-f text-white"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter text-white"></i></a></li>
+          <li><a href="#"><i class="fab fa-google-plus-g text-white"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin-in text-white"></i></a></li>
+          <li><a href="#"><i class="fab fa-instagram text-white"></i></a></li>
+        </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+    
+<div class="container text-md-left mt-5">
+  <div class="row d-flex justify-content-around">
+
+    <div class="col-md-3 max-auto mb-4">
+      <h6 class="text-uppercase font-weight-bold">The Provider</h6>
+      <hr class="bg-success mb-4 mt-0 d-inline-block max-auto" style="width: 125px;height: 2px;">
+      <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio vel accusantium 
+        laboriosam qui, eveniet excepturi perferendis? Totam atque, saepe recusandae nam animi 
+        dignissimos, ratione eaque amet tempora assumenda laudantium error.</p>
+    </div>
+
+    <div class="col-md-2 max-auto mb-4">
+      <h6 class="text-uppercase font-weight-bold">Products</h6>
+      <hr class="bg-success mb-4 mt-0 d-inline-block max-auto" style="width: 85px;height: 2px;">
+      <ul class="list-unstyled">
+        <li class="my-2"><a href="#">HTML 5</a></li>
+        <li class="my-2"><a href="#">CSS 3</a></li>
+        <li class="my-2"><a href="#">Bootstrap 4</a></li>
+        <li class="my-2"><a href="#">JavaScript</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-2 max-auto mb-4">
+      <h6 class="text-uppercase font-weight-bold">Usefull links</h6>
+      <hr class="bg-success mb-4 mt-0 d-inline-block max-auto" style="width: 110px;height: 2px;">
+      <ul class="list-unstyled">
+        <li class="my-2"><a href="#">Home</a></li>
+        <li class="my-2"><a href="#">About</a></li>
+        <li class="my-2"><a href="#">Services</a></li>
+        <li class="my-2"><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="col-md-3 max-auto mb-4">
+      <h6 class="text-uppercase font-weight-bold">Contact</h6>
+      <hr class="bg-success mb-4 mt-0 d-inline-block max-auto" style="width: 110px;height: 2px;">
+
+      <ul class="list-unstyled contact">
+        <li class="my-2"><i class="fas fa-home"></i>Adama, Ethiopia</li>
+        <li class="my-2"><i class="far fa-envelope"></i>duresawata21@gmail.com</li>
+        <li class="my-2"><i class="fas fa-phone"></i>+251-996-529-960</li>
+        <li class="my-2"><i class="fas fa-print"></i>+25100000000</li>
+      </ul>
+    </div>
+
+  </div>
+</div>    
+
+<!-- Copyright div -->
+<div class="footer-copyright text-center py-3">
+  <p>&copy; Copyright
+  <a href="#">ethioAgri.com</a></p>
+  <p>Designed by Duresa wata</p>
+</div>
+
+</footer>
+
+
+
+    <!-- <script src="{% static 'dist/src.e31bb0bc.js' %}"></script> -->
+
+  <script src="{% static 'js/jquery-331.min.js' %}"></script>
+  <script src = "{% static 'js/js/bootstrap-337.min.js' %}"></script>
+
+</body>
+</html>

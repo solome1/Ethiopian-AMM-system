@@ -1,0 +1,125 @@
+/* 
+body {
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333333;
+    background: #f0f0f0;
+    overflow-x: hidden;   
+}
+*/
+/* top menu styles */
+
+#top{
+    background: #555555;
+    padding: 10px 0;
+}
+
+#top .offer {
+    color: #ffffff;
+}
+
+#top .offer .btn{
+    text-transform: uppercase;
+}
+
+@media(max-width: 991px){
+    #top .offer {
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 991px){
+    #top{
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+#top a{
+    color: #ffffff;
+}
+
+#top ul.menu {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 5px;
+    margin: 0px;
+    text-align: right;
+    font-size: 12px;
+    list-style: none;
+}
+.login {
+    margin-right: 1em;
+    background: #555555;
+}
+
+#top ul.menu > li a{
+    color: #eeeeee;
+    text-decoration: none;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* end*/
+
+.navbar {
+    margin-top: 0.5em;
+}
+.navbar-collapse {
+    margin-left: 2em;
+}
+
+.navbar-nav li{
+    margin-left: 2.2em;
+}
+
+
+
+.left-cat{
+    margin-left: -0.5em;
+}
+
+.right-cat {
+    margin-right: 0.2em;
+}
+
+footer ul li{
+    list-style-type: none;
+}
+
+
+footer a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.social {
+    display: flex;
+    justify-content: center;
+}
+
+.social li{
+    margin-right: 2em;
+}
+
+.contact li i{
+    margin-right: 1em;
+}
+
+.footer-copyright {
+    background: rgba(0, 0, 0, 0.26);
+}
+
+/* style for login page */
+
+
+.dropdown-menu{
+    background-color: #555555;
+}
+
+
+
+
+/* test sidebar styles */

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add task</title>
+        <h1>Add Task</h1>
+    </head>
+    <body>
+        <form action="saveDo" method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
